@@ -1,0 +1,38 @@
+<p>
+  <b>User:</b>
+  <%=h @card.user_id %>
+</p>
+
+<p>
+  <b>Frame:</b>
+  <%=h @card.frame %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%=h @card.message %>
+</p>
+
+<p>
+  <b>Add map:</b>
+  <%=h @card.add_map %>
+</p>
+
+<p>
+  <b>Copy me:</b>
+  <%=h @card.copy_me %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%=h @card.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%=h @card.lng %>
+</p>
+
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

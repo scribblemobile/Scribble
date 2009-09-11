@@ -1,0 +1,14 @@
+<p>You have <%=@totalusers%> users</p>
+
+
+<% for user in @users%>
+<div style="height:65px; border:1px solid #000">
+<div style="float:left; width:80px; padding:5px">
+    <a target="_blank" href="/users/draftphotos/<%=user.id%>/original_<%=user.draftphoto_file_name%>"><%= image_tag user.draftphoto.url(:small) %></a>
+</div>
+<div style="float:left; width:100px; padding:5px">
+	<%=user.first_name%> <%=user.last_name%>
+</div>
+<div style="clear:both"></div>
+</div>
+<%end%>

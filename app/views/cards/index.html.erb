@@ -1,0 +1,34 @@
+<h1>Listing cards</h1>
+
+<table border="1">
+  <tr>
+	<th>Photo</th>
+    <th>User ID</th>
+    <th>Frame</th>
+    <th>Message</th>
+    <th>Add map</th>
+    <th>Copy me</th>
+    <th>Lat</th>
+    <th>Lng</th>
+  </tr>
+
+<% for card in @cards %>
+  <tr>
+	<td><a target="_blank" href="/cards/<%=h card.id %>/<%=h card.photo %>"><img width="60" height="60" src="/cards/<%=h card.id %>/<%=h card.photo %>"></a></td>
+    <td><%=h card.user_id %></td>
+    <td><%=h card.frame %></td>
+    <td><%=h card.message %></td>
+    <td><%=h card.add_map %></td>
+    <td><%=h card.copy_me %></td>
+    <td><%=h card.lat %></td>
+    <td><%=h card.lng %></td>
+    <td><a target="_blank" href="/cards/generate_xml/<%= card.id%>.xml">Show XML</a></td>
+    <td><%= link_to 'Edit', edit_card_path(card) %></td>
+    <td><%= link_to 'Destroy', card, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New card', new_card_path %>

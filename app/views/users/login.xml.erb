@@ -1,0 +1,9 @@
+<packet>
+	<error><%=@error%></error>
+	<%unless @user.nil?%>
+		<user-id><%=@user.id%></user-id>
+		<first-name><%=@user.first_name%></first-name>
+		<last-name><%=@user.last_name%></last-name>
+		<auto-login-token><%=@user.auto_login_token%></auto-login-token>
+	<%end%>
+</packet>

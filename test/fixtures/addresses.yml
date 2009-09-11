@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  card_id: 1
+  first_name: MyText
+  last_name: MyText
+  address1: MyText
+  address2: MyText
+  address3: MyText
+  city: MyText
+  state: MyText
+  zip: MyText
+  country: MyText
+
+two:
+  card_id: 1
+  first_name: MyText
+  last_name: MyText
+  address1: MyText
+  address2: MyText
+  address3: MyText
+  city: MyText
+  state: MyText
+  zip: MyText
+  country: MyText

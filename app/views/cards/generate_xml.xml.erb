@@ -1,0 +1,41 @@
+
+<data>
+
+	<sending_user>
+		<first_name><%=@user.first_name%></first_name>
+		<last_name><%=@user.last_name%></last_name>
+		<street><%=@user.return_street%></street>
+		<city><%=@user.return_city%></city>
+		<state><%=@user.return_state%></state>
+		<zip><%=@user.return_zip%></zip>
+		<country><%=@user.return_country%></country>
+	</sending_user>
+
+
+	<card>
+		<photo_link>http://localhost:3000/cards/<%=@card.id%>/<%= @card.photo%></photo_link>
+		<message><%= @card.message %></message>
+		<frame><%= @card.frame %></frame>
+		<copy_sending_user><%= @card.copy_me %></copy_sending_user>
+		<add_map><%= @card.add_map %></add_map>
+		<lat><%= @card.lat %></lat>
+		<lng><%= @card.lng %></lng>
+	</card>
+	
+	<addresses>
+	
+		<%for address in @addresses%>
+			<address>
+				<first_name><%=address.first_name%></first_name>
+				<last_name><%=address.last_name%></last_name>
+				<street><%=address.street%></street>
+				<city><%=address.city%></city>
+				<state><%=address.state%></state>
+				<zip><%=address.zip%></zip>
+				<country><%=address.country%></country>
+				<countryCode><%=address.countryCode%></countryCode>
+			</address>
+		<%end%>
+	
+	</addresses>
+</data>
