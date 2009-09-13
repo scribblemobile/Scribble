@@ -40,16 +40,16 @@ class UsersController < ApplicationController
     
     @user = User.find(params[:id])
     
-    unless params[:user][:draftphoto].nil?
-      @user.draftphoto = params[:user][:draftphoto]
-    else
+    #unless params[:user][:draftphoto].nil?
+      #@user.draftphoto = params[:user][:draftphoto]
+    #else
       attributes = params
       attributes.delete('authenticity_token')
       attributes.delete('_method')
       attributes.delete('action')
       attributes.delete('controller')
       @user.update_attributes(attributes)
-    end
+    #end
     
     @user.save!
       
