@@ -50,7 +50,7 @@ ActionController::Routing::Routes.draw do |map|
     map.connect 'register', :controller => 'users', :action => 'register'
     
     map.generate_xml 'generate_xml.xml', :controller => "cards", :action => "generate_xml"
-    
+    map.generate_card 'generate_card.pdf', :controller => "cards", :action => "generate_card"
     
   
   map.connect ':controller/:action/:id'

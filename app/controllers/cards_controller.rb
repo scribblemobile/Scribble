@@ -18,12 +18,23 @@ class CardsController < ApplicationController
   # GET /cards/1
   # GET /cards/1.xml
   def show
+    
+    require "prawn/core"
+    require "prawn/layout"
+    
     @card = Card.find(params[:id])
 
+  
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @card }
+      format.html # index.html.erb
+      format.xml  { render :xml => @cards }
+      format.pdf  { render :layout => false }
     end
+   
+    
+
+
+
   end
 
   # GET /cards/new
@@ -149,6 +160,11 @@ class CardsController < ApplicationController
     end
     
   end
+
+def generate_card
+
+
+end
 
 
   # PUT /cards/1
