@@ -21,6 +21,7 @@ class CardsController < ApplicationController
     
     require "prawn/core"
     require "prawn/layout"
+   # require "prawn/fast_png"
     
     @card = Card.find(params[:id])
 

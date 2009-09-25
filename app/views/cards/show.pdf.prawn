@@ -1,5 +1,4 @@
-#pdf = Prawn::Document.new(:page => "LETTER")
-pdf = Prawn::Document.new(:background => "#{RAILS_ROOT}/public/images/cards/frame1.png", :page_size => [1725, 1350], :margin=>0)
+pdf = Prawn::Document.new(:background => "#{RAILS_ROOT}/public/images/cards/frame1.jpg", :page_size => [1725, 1350], :margin=>0)
 
 
 pdf.text "hi"
