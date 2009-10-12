@@ -5,6 +5,7 @@
 <head>
 	<title>Scribble Printer Interface</title>
 	<script src="/javascripts/jquery-1.2.6.pack.js" type="text/javascript"></script>
+	<script src="/javascripts/printer.js" type="text/javascript"></script>
 	<link href="/stylesheets/printer.css" media="screen" rel="stylesheet" type="text/css" />	
 </head>
 
@@ -12,7 +13,16 @@
 
 
 <body>
+	
+	<%if params[:password] != "Robbert"%>
 
+	<div align="center" style="margin-top:75px">
+		<img src="/images/logo.png"><br>
+		<input type="textfield" id="login_emaial" value="password" style="margin-top:10px; width:155px; color:#666" onfocus="if (this.value=='password') { this.value='' }" onblur="if (this.value=='') { this.value='password' }" onKeyPress="return submitentersplash(this.value,event)">
+
+	</div>
+
+	<%else%>
 	<div id="content_center">
 		<div style="float:left; padding-bottom:15px; padding-top:6px; ">
 			<img src="/images/logo.png" height="67" width="169">
@@ -21,17 +31,18 @@
 		<div style="position:absolute; text-align:right; top:60px; width:700px">7 results</div>
 		<div class="topBar2">
 			<div style="float:left">
-				<a href="#">Select all</a> | <a href="#">Mark as shipped</a>
+				<a href="#">Select all</a> | <a href="#">Mark as shipped</a> | <a href="#" onclick="alert('Feature to be completed when there is a budget for it.')">Generate ZIP</a>
 			</div>
 			
 			<div style="float:right">
 				<select>
 					<option>Not shipped</option>
-					<option>All</option>
+					<option>Printed & Shipped</option>
 				</select>
 			</div>
 		</div>
-
+		
+	
 
 		<div style="clear:both; position:absolute; left:0px; top:130px; width:700px">
 			<table id="tabletop" class="MembersTable" style="" cellspacing="0">
@@ -39,9 +50,10 @@
 				<tr class="memberTitle">
 					<td id="t_2" class="memberTitleTD" style="text-align:left;width:15px">&nbsp;</td>
 					<td id="t_2" class="memberTitleTD" style="text-align:left;width:70px"><b>Job ID</b></td>
-					<td class="memberTitleTDx" style="text-align:left; width:400px"><b>Card</b></td>
-					<td class="memberTitleTDx" style="text-align:left; width:65px"><b># Copies</b></td>
-					<td id="t_1" class="memberTitleTD" style="width:150px"><b>Files</b></td>
+					<td class="memberTitleTDx" style="text-align:left; width:390px"><b>Card</b></td>
+					<td class="memberTitleTDx" style="text-align:left; width:75px; background-color:#C5C5C5"><b>Created</b></td>
+					<td class="memberTitleTDx" style="text-align:left; width:75px"><b># Copies</b></td>
+					<td id="t_1" class="memberTitleTD" style="width:75px"><b>Files</b></td>
 				</tr>
 				
 				<% i = 0%>
@@ -61,17 +73,20 @@
 						<div style="float:left; width:65px; height:60px">
 							<a target="_blank" href="/cards/<%=h card.id %>/<%=h card.photo %>"><img width="60" height="60" src="/cards/<%=h card.id %>/<%=h card.photo %>"></a>
 						</div>
-						<div style="float:left; font-size:10px; width:300px">
+						<div style="float:left; font-size:10px; width:290px">
 							<%=card.message%>
 						</div>
+						</td>
+						<td class="memberTitleTD" style="text-align:left; background-color:#<%if even == 0%>E5E5E5<%else%>F0F0F0<%end%> ">
+							<%= relative_date(card.created_at) %>
 						</td>
 						<td class="memberTitleTD" style="text-align:left; ">
 							<% @addresses = Address.find(:all, :conditions=>"card_id = #{card.id}")%>
 							<%= @addresses.length%>
 						</td>
 						<td class="memberTitleTD" style="text-align:left;">
-							<img style="padding:2px" src="/images/file.png"><a href="#">Front</a><br>
-							<img style="padding:2px" src="/images/file.png"><a href="#">Back</a><br>
+							<img style="padding:2px" src="/images/file.png"><a href="/cards/<%=card.id %>.pdf?front=true">Front</a><br>
+							<img style="padding:2px" src="/images/file.png"><a href="/cards/<%=card.id %>.pdf?front=false">Back</a><br>
 							<img style="padding:2px" src="/images/file.png"><a href="#">CVS</a><br>
 						</td>
 					</tr>
@@ -79,9 +94,13 @@
 				
 				
 			</table>
+			<%= will_paginate @cards %>
+			
+				<div style="position:absolute; top:20px; left:530px"><img src="/images/arrow_down.gif"></div>
 			<p>&nbsp;</p>
 		</div>
 	</div>
+	<%end%>
 
 </body>
 

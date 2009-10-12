@@ -172,8 +172,7 @@ end
   # PUT /cards/1
   # PUT /cards/1.xml
   def update
-    
-   
+  
     @card = Card.find(params[:id])
 
     respond_to do |format|
