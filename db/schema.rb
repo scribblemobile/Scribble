@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090830223511) do
+ActiveRecord::Schema.define(:version => 20091012175624) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "card_id"
@@ -28,16 +28,18 @@ ActiveRecord::Schema.define(:version => 20090830223511) do
 
   create_table "cards", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "frame",      :default => 0
+    t.integer  "frame",          :default => 0
     t.text     "message"
-    t.boolean  "add_map",    :default => false
-    t.boolean  "copy_me",    :default => false
+    t.boolean  "add_map",        :default => false
+    t.boolean  "copy_me",        :default => false
     t.float    "lat"
     t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "price_paid"
     t.text     "photo"
+    t.integer  "printer_status", :default => 0
+    t.integer  "job_id"
   end
 
   create_table "users", :force => true do |t|

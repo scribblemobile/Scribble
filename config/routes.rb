@@ -44,6 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing the them or commenting them out if you're using named routes and resources.
   
     map.resources :users
+    map.resources :printer
   
     map.connect 'login', :controller => 'users', :action => 'login'
     map.connect 'logout', :controller => 'users', :action => 'logout'

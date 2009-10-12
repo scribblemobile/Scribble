@@ -87,7 +87,8 @@ class CardsController < ApplicationController
       unless params[:lng].nil?
         @card.lng = params[:lng]
       end
-      
+      @card.job_id = @card.id + 7000000
+      @card.printer_status = 0
       @card.save!
       
       @addresses = JSON.parse(params[:addresses_json])

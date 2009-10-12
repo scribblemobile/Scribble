@@ -1,0 +1,64 @@
+html {
+	overflow: -moz-scrollbars-vertical;
+}
+
+body {color: #666666; background-color:#fff; margin:0; padding:0; font-family: "Lucida Grande", Lucida, sans-serif; font-size:12px; line-height:1.3em;}
+
+#content_center { position: relative; width: 700px; margin-left: auto; margin-right:auto; text-align: left; }
+
+.MembersTable {
+	border-top: 1px solid #BBBBBB;
+	border-left: 1px solid #BBBBBB;
+	border-spacing:0px;
+	width:700px;
+}
+
+
+
+.memberTitleTD {
+	border-bottom: 1px solid #BBBBBB;
+	border-right: 1px solid #BBBBBB;
+	padding:5px;
+
+	text-align:center;
+}
+
+.memberTitleTDx {
+	border-bottom: 1px solid #BBBBBB;
+	border-right: 1px solid #BBBBBB;
+	padding:5px;
+
+	text-align:center;
+}
+
+
+
+.memberTitle {
+	background-color:#E5E5E5;
+	color:#000;
+	height:50px;
+}
+
+.input {border:1px solid #ccc; background-color:#F4F4F4; padding:5px; width:225px;
+	font-family: "Lucida Grande", Lucida, sans-serif; font-size:12px;
+}
+
+.input:focus {background-color:yellow;}
+
+
+.topBar2 {
+position:absolute;
+-webkit-border-radius:5px;
+-moz-border-radius: 5px;
+top:83px;
+margin-bottom:10px;
+width:688px;
+height:20px;
+background-color:#f1f1f1;
+color:#666;
+padding:5px;
+padding-top:7px;
+font-size:13px;
+border:1px solid #AAAAAA;
+text-align:left;
+}

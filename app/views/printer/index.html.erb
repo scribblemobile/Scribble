@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Scribble Printer Interface</title>
+	<script src="/javascripts/jquery-1.2.6.pack.js" type="text/javascript"></script>
+	<link href="/stylesheets/printer.css" media="screen" rel="stylesheet" type="text/css" />	
+</head>
+
+
+
+
+<body>
+
+	<div id="content_center">
+		<div style="float:left; padding-bottom:15px; padding-top:6px; ">
+			<img src="/images/logo.png" height="67" width="169">
+		</div>
+
+		<div style="position:absolute; text-align:right; top:60px; width:700px">7 results</div>
+		<div class="topBar2">
+			<div style="float:left">
+				<a href="#">Select all</a> | <a href="#">Mark as shipped</a>
+			</div>
+			
+			<div style="float:right">
+				<select>
+					<option>Not shipped</option>
+					<option>All</option>
+				</select>
+			</div>
+		</div>
+
+
+		<div style="clear:both; position:absolute; left:0px; top:130px; width:700px">
+			<table id="tabletop" class="MembersTable" style="" cellspacing="0">
+				
+				<tr class="memberTitle">
+					<td id="t_2" class="memberTitleTD" style="text-align:left;width:15px">&nbsp;</td>
+					<td id="t_2" class="memberTitleTD" style="text-align:left;width:70px"><b>Job ID</b></td>
+					<td class="memberTitleTDx" style="text-align:left; width:400px"><b>Card</b></td>
+					<td class="memberTitleTDx" style="text-align:left; width:65px"><b># Copies</b></td>
+					<td id="t_1" class="memberTitleTD" style="width:150px"><b>Files</b></td>
+				</tr>
+				
+				<% i = 0%>
+				<% for card in @cards%>
+					<%i = i + 1%>
+					<%even = i % 2 %>
+					
+					<tr class="memberTitle" <%if even == 0%>style="background-color:#F9F9F9"<%else%>style="background-color:#fff"<%end%>>
+
+						<td class="memberTitleTD" style="text-align:left; padding-left:1px;">
+							<input type="checkbox">
+						</td>
+						<td class="memberTitleTD" style="text-align:left;">
+							<%=card.job_id%>
+						</td>
+						<td class="memberTitleTD" style="text-align:left;">
+						<div style="float:left; width:65px; height:60px">
+							<a target="_blank" href="/cards/<%=h card.id %>/<%=h card.photo %>"><img width="60" height="60" src="/cards/<%=h card.id %>/<%=h card.photo %>"></a>
+						</div>
+						<div style="float:left; font-size:10px; width:300px">
+							<%=card.message%>
+						</div>
+						</td>
+						<td class="memberTitleTD" style="text-align:left; ">
+							<% @addresses = Address.find(:all, :conditions=>"card_id = #{card.id}")%>
+							<%= @addresses.length%>
+						</td>
+						<td class="memberTitleTD" style="text-align:left;">
+							<img style="padding:2px" src="/images/file.png"><a href="#">Front</a><br>
+							<img style="padding:2px" src="/images/file.png"><a href="#">Back</a><br>
+							<img style="padding:2px" src="/images/file.png"><a href="#">CVS</a><br>
+						</td>
+					</tr>
+				<%end%>
+				
+				
+			</table>
+			<p>&nbsp;</p>
+		</div>
+	</div>
+
+</body>
+
+</html>
