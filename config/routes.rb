@@ -45,6 +45,7 @@ ActionController::Routing::Routes.draw do |map|
   
     map.resources :users
     map.resources :printer
+     map.resources :mailed
   
     map.connect 'login', :controller => 'users', :action => 'login'
     map.connect 'logout', :controller => 'users', :action => 'logout'
@@ -52,6 +53,7 @@ ActionController::Routing::Routes.draw do |map|
     
     map.generate_xml 'generate_xml.xml', :controller => "cards", :action => "generate_xml"
     map.generate_card 'generate_card.pdf', :controller => "cards", :action => "generate_card"
+    map.csv 'csv', :controller => "cards", :action => "generate_csv"
     
   
   map.connect ':controller/:action/:id'

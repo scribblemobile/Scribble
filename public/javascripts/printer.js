@@ -13,3 +13,35 @@ if (keycode == 13)
 else
    return true;
 }
+
+function selectAllNone(link) {
+	if ($(link).html() == "Select all") {
+            $("#group INPUT[type='checkbox']").attr('checked', true);
+			$(link).html("Select none")
+      } else {
+		$("#group INPUT[type='checkbox']").attr('checked', false);
+		$(link).html("Select all")
+	}
+}
+
+
+function MarkMailStatus(link) {
+	
+	if ($(link).html() == "Mark as mailed") {
+		status = 1
+	} else {
+		status = 0
+	}
+	
+	
+	$("#group INPUT[type='checkbox']").each(
+	  function() {
+		if ($(this).is(':checked')) {
+			$.getJSON("/mailed/"+$(this).attr('id')+".js?status="+status,
+		        function(json){
+					$("#row"+json).hide();
+			});
+		}
+	  }
+	);
+}

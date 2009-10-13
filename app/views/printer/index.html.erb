@@ -28,32 +28,32 @@
 			<img src="/images/logo.png" height="67" width="169">
 		</div>
 
-		<div style="position:absolute; text-align:right; top:60px; width:700px">7 results</div>
+		<div style="position:absolute; text-align:right; top:60px; width:700px"><%=@cards.length %> result<%if @cards.length > 1 %>s<%end%></div>
 		<div class="topBar2">
 			<div style="float:left">
-				<a href="#">Select all</a> | <a href="#">Mark as shipped</a> | <a href="#" onclick="alert('Feature to be completed when there is a budget for it.')">Generate ZIP</a>
+				<a href="#" onclick="selectAllNone(this)">Select all</a> | <a onclick="MarkMailStatus(this)" href="#"><%if params[:shipped] == '1'%>Mark as NOT mailed<%else%>Mark as mailed<%end%></a> | <a href="#" onclick="alert('Feature to be completed when there is a budget for it.')">Generate ZIP</a>
 			</div>
 			
 			<div style="float:right">
-				<select>
-					<option>Not shipped</option>
-					<option>Printed & Shipped</option>
+				<select autocomplete="false" onchange="window.location.href= '/printer?password=Robbert&shipped='+this.value">
+					<option value="0"  >Not mailed</option>
+					<option value="1" <%if params[:shipped] == '1'%>selected<%end%>>Printed & Mailed</option>
 				</select>
 			</div>
 		</div>
 		
 	
 
-		<div style="clear:both; position:absolute; left:0px; top:130px; width:700px">
+		<div id="group" style="clear:both; position:absolute; left:0px; top:130px; width:700px">
 			<table id="tabletop" class="MembersTable" style="" cellspacing="0">
 				
 				<tr class="memberTitle">
-					<td id="t_2" class="memberTitleTD" style="text-align:left;width:15px">&nbsp;</td>
-					<td id="t_2" class="memberTitleTD" style="text-align:left;width:70px"><b>Job ID</b></td>
-					<td class="memberTitleTDx" style="text-align:left; width:390px"><b>Card</b></td>
-					<td class="memberTitleTDx" style="text-align:left; width:75px; background-color:#C5C5C5"><b>Created</b></td>
-					<td class="memberTitleTDx" style="text-align:left; width:75px"><b># Copies</b></td>
-					<td id="t_1" class="memberTitleTD" style="width:75px"><b>Files</b></td>
+					<td id="t_2" class="memberTitleTD" style="text-align:left;width:22px">&nbsp;</td>
+					<td id="t_2" class="memberTitleTD" style="text-align:left;width:64px"><b>Job ID</b></td>
+					<td class="memberTitleTDx" style="text-align:left; width:359px"><b>Card</b></td>
+					<td class="memberTitleTDx" style="text-align:left; width:65px; background-color:#C5C5C5"><b>Created</b></td>
+					<td class="memberTitleTDx" style="text-align:left; width:65px"><b># Copies</b></td>
+					<td id="t_1" class="memberTitleTD" style="width:65px"><b>Files</b></td>
 				</tr>
 				
 				<% i = 0%>
@@ -61,10 +61,10 @@
 					<%i = i + 1%>
 					<%even = i % 2 %>
 					
-					<tr class="memberTitle" <%if even == 0%>style="background-color:#F9F9F9"<%else%>style="background-color:#fff"<%end%>>
+					<tr id="row<%=card.id%>" class="memberTitle" <%if even == 0%>style="background-color:#F9F9F9"<%else%>style="background-color:#fff"<%end%>>
 
 						<td class="memberTitleTD" style="text-align:left; padding-left:1px;">
-							<input type="checkbox">
+							<input name="<%= card.id %>" id="<%= card.id %>" type="checkbox" autocomplete="false">
 						</td>
 						<td class="memberTitleTD" style="text-align:left;">
 							<%=card.job_id%>
@@ -73,7 +73,7 @@
 						<div style="float:left; width:65px; height:60px">
 							<a target="_blank" href="/cards/<%=h card.id %>/<%=h card.photo %>"><img width="60" height="60" src="/cards/<%=h card.id %>/<%=h card.photo %>"></a>
 						</div>
-						<div style="float:left; font-size:10px; width:290px">
+						<div style="float:left; font-size:10px; width:270px">
 							<%=card.message%>
 						</div>
 						</td>
@@ -87,7 +87,7 @@
 						<td class="memberTitleTD" style="text-align:left;">
 							<img style="padding:2px" src="/images/file.png"><a href="/cards/<%=card.id %>.pdf?front=true">Front</a><br>
 							<img style="padding:2px" src="/images/file.png"><a href="/cards/<%=card.id %>.pdf?front=false">Back</a><br>
-							<img style="padding:2px" src="/images/file.png"><a href="#">CVS</a><br>
+							<img style="padding:2px" src="/images/file.png"><a href="/csv?id=<%=card.id %>">CVS</a><br>
 						</td>
 					</tr>
 				<%end%>
@@ -102,6 +102,9 @@
 	</div>
 	<%end%>
 
+<script>
+$("#group INPUT[type='checkbox']").attr('checked', false);
+</script>
 </body>
 
 </html>

@@ -3,6 +3,8 @@ class CardsController < ApplicationController
   # GET /cards.xml
   
   require 'json'
+  require "faster_csv"
+  
   
   
   
@@ -167,6 +169,77 @@ def generate_card
 
 
 end
+
+
+def generate_csv
+  
+    @card = Card.find(params[:id])
+    @addresses = Address.find(:all, :conditions=>"card_id=#{@card.id}")
+    
+    @jobname = "#{@card.job_id}_csv"
+
+
+    csv_string = FasterCSV.generate do |csv|
+      csv << ["LINETYPE", "COUNT", "JOBID", "FIRSTNAME", "LASTNAME", "TITLE", "BUSINESS", "ADDRESS", "ADDRESS2", "CITY", "STATE", "ZIP", "COUNTRY", "DELIVERY POINT BARCODE", "SNGL PC", "CARRIER ROUTE", "WALK SEQUENCE", "CUSTOM1", "CUSTOM2", "CUSTOM3", "CUSTOM4", "CUSTOM5", "FILE_1", "FILE_2"]
+
+      @addresses.each do |record|
+        
+        if record['first_name'].nil?
+          record['first_name'] = " "
+        end
+        if record['last_name'].nil?
+          record['last_name'] = " "
+        end
+        if record['street'].nil?
+          record['street'] = " "
+        end
+        if record['city'].nil?
+          record['city'] = " "
+        end
+        if record['state'].nil?
+          record['state'] = " "
+        end
+        if record['country'].nil?
+          record['country'] = " "
+        end
+        
+        
+        
+        
+        csv << ["100080",
+                "1",
+                "#{@card.job_id}",
+                record['first_name'].upcase,
+                record['last_name'].upcase,
+                " ",
+                " ",
+                 record['street'].upcase,
+                " ",
+                record['city'].upcase,
+                record['state'].upcase,
+                record['zip'],
+                record['country'].upcase,
+                " ",
+                "SNGL PC",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                "#{@card.job_id}_file_1.pdf",
+                "#{@card.job_id}_file_2.pdf"
+                ]
+      end
+    end
+
+    filename = @jobname.downcase.gsub(/[^0-9a-z]/, "_") + ".csv"
+    send_data(csv_string,
+      :type => 'text/csv; charset=utf-8; header=present',
+      :filename => filename)
+  end
+
 
 
   # PUT /cards/1

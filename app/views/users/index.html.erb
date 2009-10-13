@@ -1,14 +1,72 @@
-<p>x You have <%=@totalusers%> users</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Mass TLC</title>
+	<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+	<script src="/javascripts/jquery-1.2.6.pack.js" type="text/javascript"></script>
+	<script src="/javascripts/iui.js" type="text/javascript"></script>
+	<script src="/javascripts/navigation.js" type="text/javascript"></script>
+	<script src="/javascripts/application.js" type="text/javascript"></script>
+	<link href="/stylesheets/UrbanSonarStyle.css" media="screen" rel="stylesheet" type="text/css" />
+	
+</head>
+
+<body>
+	
+    <div class="toolbar" <%if params[:layout]%>style="margin-top:-45px"<%end%>>
+        <h1 id="pageTitle"></h1>
+		
+		<div id="leftButton"></div>
+		
+		<div id="rightButton"></div>
+		
+		<a id="backButton"  class="button" href="#" ontouchstart="$(this).css({opacity:.6}); HidePopUp();" ontouchend="$(this).css({opacity:1})"></a>
+	
+
+		<div id="OBJC_POP" style="display:none; position:absolute; top:120px; width:150px; left:85px; background-color:#000000; opacity:.9; height:100px; -webkit-border-radius: 10px; z-index:50;">
+			<div style="margin-top:25px; text-align:center; color:#ffffff"><img src="/images/spinner_black.gif"></div>
+			<div style="margin-top:10px; text-align:center; color:#ffffff">Loading...</div>
+		</div>
+		
+	
+		
+	</div>
 
 
-<% for user in @users%>
-<div style="height:65px; border:1px solid #000">
-<div style="float:left; width:80px; padding:5px">
-    <a target="_blank" href="/users/draftphotos/<%=user.id%>/original_<%=user.draftphoto_file_name%>"><%= image_tag user.draftphoto.url(:small) %></a>
-</div>
-<div style="float:left; width:100px; padding:5px">
-	<%=user.first_name%> <%=user.last_name%>
-</div>
-<div style="clear:both"></div>
-</div>
-<%end%>
+
+	<div id="explore" title="Scribble Stats" class="panel" selected="true" >
+		
+	<%if params[:password] == "Robbert"%>
+
+		<p><b><span style="font-size:24px; color:darkblue"><%=@totalusers%></span></b> users</p>
+
+		<p><b><span style="font-size:24px; color:darkblue"><%=@cards.length%></span></b> cards (<b><span style="font-size:24px; color:darkblue"><%=@addresses.length%></span></b> copies) ordered</p>
+
+		<p><b><span style="font-size:24px; color:darkblue"><%=@tobeprinted_cards.length%></span></b> orders to be shipped 
+
+			<%if @tobeprinted_cards.length > 0%>(oldest: 	<%= relative_date(@tobeprinted_cards[0].created_at) %>)
+			<%end%>
+			</p>
+
+		<p><b><span style="font-size:24px; color:darkblue">$<%=@revenue.rev%></span></b> total revenue</p>
+
+	<%end%>
+	
+	</div>
+
+
+	
+	<div class="Row_Active">f</div>
+	<div class="BlueSpinner">f</div>
+	<div class="SwitchList">f</div>
+	<div class="SwitchThumb">f</div>
+	<div class="inProgress">f</div>
+	<div class="ThePopUp">f</div>
+	<img src="/images/pinwheel-w.gif">
+
+</body>
+</html>
+
+

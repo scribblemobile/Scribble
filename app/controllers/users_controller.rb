@@ -57,6 +57,15 @@ class UsersController < ApplicationController
   
   def index
     @users = User.find(:all, :order=>:created_at)
+    
+    @cards = Card.find(:all)
+    
+    @addresses = Address.find(:all)
+    
+    @tobeprinted_cards = Card.find(:all, :conditions=>"cards.printer_status != 1", :order=>"created_at ASC")
+    
+    @revenue = Card.find(:first, :select=>["SUM(price_paid) as rev"])
+     
     @totalusers = @users.length
   end
 
