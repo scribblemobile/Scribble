@@ -65,10 +65,7 @@ class CardsController < ApplicationController
       @card = Card.new
       @user = User.find(params[:user_id])
       
-      
-
-        
-      @card.photo = "original_#{@user.draftphoto_file_name}"
+      @card.photo = @user.draftphoto_file_name
       @card.user_id = params[:user_id]
       
       unless params[:message].nil?
@@ -133,7 +130,13 @@ class CardsController < ApplicationController
       directory = "public/cards/#{@card.id}/"
       FileUtils.mkdir_p(directory) unless File.directory?(directory)
       
-      FileUtils.copy("public/users/draftphotos/#{@card.user_id}/#{@card.photo}", "#{directory}/#{@card.photo}")
+      #FileUtils.copy("public/users/draftphotos/#{@card.user_id}/#{@card.photo}", "#{directory}/#{@card.photo}")
+      
+      #copy full-size
+      FileUtils.copy("public/users/draftphotos/#{@card.user_id}/original_#{@user.draftphoto_file_name}", "#{directory}/original_#{@user.draftphoto_file_name}")
+      
+      #copy thumb
+      FileUtils.copy("public/users/draftphotos/#{@card.user_id}/small_#{@user.draftphoto_file_name}", "#{directory}/small_#{@user.draftphoto_file_name}")
       
     else
     

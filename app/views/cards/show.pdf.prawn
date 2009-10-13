@@ -9,10 +9,9 @@ pdf.bounding_box [0,288], :width => 414 do
 		pdf.canvas do
 	    pdf.bounding_box([33,292], :width => 215) do
 	
-			pigs = "#{RAILS_ROOT}/public/cards/#{@card.id}/#{@card.photo}" 
-			pdf.image pigs, :at => [0,0], :fit => [215, 215]
+		pigs = "#{RAILS_ROOT}/public/cards/#{@card.id}/original_#{@card.photo}" 
+		pdf.image pigs, :at => [0,0], :fit => [215, 215]
 			
-	
 	    end
 	end
 	
