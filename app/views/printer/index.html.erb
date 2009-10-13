@@ -32,7 +32,7 @@
 		
 		<div class="topBar2">
 			<div style="float:left">
-				<a href="#" onclick="selectAllNone(this)">Select all</a> | <a onclick="MarkMailStatus(this)" href="#"><%if params[:shipped] == '1'%>Mark as NOT mailed<%else%>Mark as mailed<%end%></a>
+				<a href="#" onclick="selectAllNone(this)">Select all</a> | <a onclick="MarkMailStatus(this,<%if params[:shipped] == '1'%>0<%else%>1<%end%>)" href="#"><%if params[:shipped] == '1'%>Mark as NOT mailed<%else%>Mark as mailed<%end%></a>
 			</div>
 			
 			<div style="float:right">
@@ -71,8 +71,8 @@
 							<%=card.job_id%>
 						</td>
 						<td class="memberTitleTD" style="text-align:left;">
-						<div style="float:left; width:65px; height:60px">
-							<a target="_blank" href="/cards/<%=h card.id %>/original_<%=h card.photo %>"><img width="60" height="60" src="/cards/<%=h card.id %>/small_<%=h card.photo %>"></a>
+						<div style="float:left; width:70px; height:60px">
+							<a target="_blank" href="/cards/<%=h card.id %>/original_<%=h card.photo %>"><img width="60" height="60" border="0" src="/cards/<%=h card.id %>/small_<%=h card.photo %>"></a>
 						</div>
 						<div style="float:left; font-size:10px; width:270px">
 							<%=card.message%>

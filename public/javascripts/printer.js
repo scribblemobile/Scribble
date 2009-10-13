@@ -25,21 +25,15 @@ function selectAllNone(link) {
 }
 
 
-function MarkMailStatus(link) {
+function MarkMailStatus(link, status) {
 	
-	status = "0";
-	
-	if ($(link).html() == "Mark as mailed") {
-		status = "1";
-	} else {
-		status = "0";
-	}
+
 	
 	
 	$("#group INPUT[type='checkbox']").each(
 	  function() {
 		if ($(this).is(':checked')) {
-			$.getJSON("/mailed/"+$(this).attr('id')+".js?status="+status+"",
+			$.getJSON("/mailed/"+$(this).attr('id')+".js?status="+status+"&test=1",
 		        function(json){
 					$("#row"+json).hide();
 			});
