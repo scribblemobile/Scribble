@@ -55,9 +55,11 @@ ActionController::Routing::Routes.draw do |map|
     map.generate_card 'generate_card.pdf', :controller => "cards", :action => "generate_card"
     map.csv 'csv', :controller => "cards", :action => "generate_csv"
     
+    map.generate_zip 'generate_zip', :controller => "printer", :action => "generate_zip"
+    
   
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+    map.connect ':controller/:action/:id'
+    map.connect ':controller/:action/:id.:format'
   
   
   
