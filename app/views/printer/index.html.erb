@@ -24,14 +24,15 @@
 
 	<%else%>
 	<div id="content_center">
-		<div style="float:left; padding-bottom:15px; padding-top:6px; ">
+		<div style="position:absolute; top:5px ">
 			<img src="/images/logo.png" height="67" width="169">
 		</div>
 
-		<div style="position:absolute; text-align:right; top:60px; width:700px"><%=@cards.length %> result<%if @cards.length > 1 %>s<%end%></div>
+		<div style="position:absolute; text-align:right; top:65px; width:700px"><a href="#" onclick="alert('Feature to be completed when there is a budget for it.')">Generate ZIP</a></div>
+		
 		<div class="topBar2">
 			<div style="float:left">
-				<a href="#" onclick="selectAllNone(this)">Select all</a> | <a onclick="MarkMailStatus(this)" href="#"><%if params[:shipped] == '1'%>Mark as NOT mailed<%else%>Mark as mailed<%end%></a> | <a href="#" onclick="alert('Feature to be completed when there is a budget for it.')">Generate ZIP</a>
+				<a href="#" onclick="selectAllNone(this)">Select all</a> | <a onclick="MarkMailStatus(this)" href="#"><%if params[:shipped] == '1'%>Mark as NOT mailed<%else%>Mark as mailed<%end%></a>
 			</div>
 			
 			<div style="float:right">
@@ -44,7 +45,7 @@
 		
 	
 
-		<div id="group" style="clear:both; position:absolute; left:0px; top:130px; width:700px">
+		<div id="group" style="clear:both; position:absolute; left:0px; top:135px; width:700px">
 			<table id="tabletop" class="MembersTable" style="" cellspacing="0">
 				
 				<tr class="memberTitle">
