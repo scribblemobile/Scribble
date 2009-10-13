@@ -86,9 +86,9 @@
 							<%= @addresses.length%>
 						</td>
 						<td class="memberTitleTD" style="text-align:left;">
-							<img style="padding:2px" src="/images/file.png"><a href="/cards/<%=card.id %>.pdf?front=true">Front</a><br>
-							<img style="padding:2px" src="/images/file.png"><a href="/cards/<%=card.id %>.pdf?front=false">Back</a><br>
-							<img style="padding:2px" src="/images/file.png"><a href="/csv?id=<%=card.id %>">CVS</a><br>
+							<img style="padding:2px" src="/images/file.png"><a target="_blank" href="/cards/<%=card.id %>/<%=card.job_id%>file_1.pdf">Front</a><br>
+							<img style="padding:2px" src="/images/file.png"><a target="_blank" href="/cards/<%=card.id %>/<%=card.job_id%>file_2.pdf">Back</a><br>
+							<img style="padding:2px" src="/images/file.png"><a target="_blank" href="/csv?id=<%=card.id %>">CVS</a><br>
 						</td>
 					</tr>
 				<%end%>

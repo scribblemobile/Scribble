@@ -87,7 +87,8 @@ class CardsController < ApplicationController
         @card.lng = params[:lng]
       end
       @card.save!
-      @card.job_id = @card.id.to_i + 7000000
+      @jobid = @card.id.to_i + 7000000
+      @card.job_id = @jobid
       @card.printer_status = 0
       @card.save!
       
@@ -160,7 +161,7 @@ class CardsController < ApplicationController
       	pdf.text @card.message, :leading=>5
       end
 
-      pdf.render_file "#{RAILS_ROOT}/public/cards/#{@card.id}/front.pdf"
+      pdf.render_file "#{RAILS_ROOT}/public/cards/#{@card.id}/#{@jobid}_file_1.pdf"
 
 
      
@@ -171,7 +172,7 @@ class CardsController < ApplicationController
       	pdf2.image pigs, :at => [-36,0], :fit => [414, 324]
       end
 
-      pdf2.render_file "#{RAILS_ROOT}/public/cards/#{@card.id}/back.pdf"
+      pdf2.render_file "#{RAILS_ROOT}/public/cards/#{@card.id}/#{@jobid}_file_2.pdf"
 
      
       
