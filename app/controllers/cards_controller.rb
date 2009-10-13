@@ -86,7 +86,7 @@ class CardsController < ApplicationController
       unless params[:lng].nil?
         @card.lng = params[:lng]
       end
-      @card.job_id = @card.id + 7000000
+      @card.job_id = @card.id.to_i + 7000000
       @card.printer_status = 0
       @card.save!
       
