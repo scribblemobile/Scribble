@@ -27,8 +27,11 @@ function selectAllNone(link) {
 
 function MarkMailStatus(link) {
 	
+	status = 0
+	
 	if ($(link).html() == "Mark as mailed") {
 		status = 1
+		alert('hi')
 	} else {
 		status = 0
 	}
