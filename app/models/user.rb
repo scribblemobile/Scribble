@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
      :image_magick_path => "/usr/bin/",
      :whiny_thumbnails => true,
      :default_style => :thumb,
-     :styles => { :small=> "50x50#", :medium=> "100x100#", :compressed=> "750x750#"}
+     :styles => { :small=> "60x60#", :medium=> "100x100#", :compressed=> "750x750#"}
       
 
   def password=(str)
