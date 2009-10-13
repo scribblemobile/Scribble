@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   
   require 'json'
   require "faster_csv"
-  
+   
   
   
   
