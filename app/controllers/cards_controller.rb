@@ -4,7 +4,8 @@ class CardsController < ApplicationController
   
   require 'json'
   require "faster_csv"
-   
+   require "prawn/core"
+   require "prawn/layout"
   
   
   
@@ -21,8 +22,7 @@ class CardsController < ApplicationController
   # GET /cards/1.xml
   def show
     
-    require "prawn/core"
-    require "prawn/layout"
+    
    # require "prawn/fast_png"
     
     @card = Card.find(params[:id])
@@ -138,6 +138,52 @@ class CardsController < ApplicationController
       
       #copy thumb
       FileUtils.copy("public/users/draftphotos/#{@card.user_id}/small_#{@user.draftphoto_file_name}", "#{directory}/small_#{@user.draftphoto_file_name}")
+      
+      
+      pdf = Prawn::Document.new(:page_size => [414, 324], :margins=>0)
+
+
+
+      pdf.bounding_box [0,288], :width => 414 do
+      	pigs = "#{RAILS_ROOT}/public/images/cards/frame#{@card.frame}.jpg" 
+      	pdf.image pigs, :at => [-36,0], :fit => [414, 324]
+
+      		pdf.canvas do
+      	    pdf.bounding_box([33,292], :width => 215) do
+
+      		pigs = "#{RAILS_ROOT}/public/cards/#{@card.id}/original_#{@card.photo}" 
+      		pdf.image pigs, :at => [0,0], :fit => [215, 215]
+
+      	    end
+      	end
+
+
+
+      end
+
+
+
+      pdf.bounding_box [230,250], :width => 110 do
+      		pdf.font "#{RAILS_ROOT}/public/images/cards/mafw.ttf"
+      	  	pdf.text @card.message, :leading=>5
+      end
+
+      pdf.render_file "#{RAILS_ROOT}/public/cards/#{@card.id}/front.pdf"
+
+
+     
+      pdf2 = Prawn::Document.new(:page_size => [414, 324], :margins=>0)
+
+      pdf2.bounding_box [0,288], :width => 414 do
+      	pigs = "#{RAILS_ROOT}/public/images/cards/back.jpg" 
+      	pdf2.image pigs, :at => [-36,0], :fit => [414, 324]
+      end
+
+      pdf2.render_file "#{RAILS_ROOT}/public/cards/#{@card.id}/back.pdf"
+
+     
+      
+      
       
     else
     
