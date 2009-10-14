@@ -76,7 +76,7 @@ class PrinterController < ApplicationController
 
             csv << ["100080",
                     "1",
-                    "#{@card.job_id}",
+                    "#{card.job_id}",
                     record['first_name'].upcase,
                     record['last_name'].upcase,
                     " ",
@@ -96,8 +96,8 @@ class PrinterController < ApplicationController
                     " ",
                     " ",
                     " ",
-                    "#{@card.job_id}_file_1.pdf",
-                    "#{@card.job_id}_file_2.pdf"
+                    "#{card.job_id}_file_1.pdf",
+                    "#{card.job_id}_file_2.pdf"
                     ]
           end
         end
