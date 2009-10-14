@@ -47,7 +47,7 @@ class PrinterController < ApplicationController
          # set read permissions on the file
          File.chmod(0644, bundle_filename)
 
-         redirect_to "/ScribbleFiles.zip"
+         redirect_to "http://174.129.21.247/ScribbleFiles.zip"
       end
 
     
