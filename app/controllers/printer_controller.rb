@@ -37,10 +37,10 @@ class PrinterController < ApplicationController
       
       
       #coped in printcontroller
-        @card = Card.find(params[:id])
-        @addresses = Address.find(:all, :conditions=>"card_id=#{@card.id}")
+      
+        
 
-        @jobname = "#{@card.job_id}_csv"
+       
 
 
         csv_string = FasterCSV.generate do |csv|
@@ -48,8 +48,8 @@ class PrinterController < ApplicationController
 
 
         for card in @cards do
-          
-          card.each do |record|
+          @addresses = Address.find(:all, :conditions=>"card_id=#{card.id}")
+          @addresses.each do |record|
 
             if record['first_name'].nil?
               record['first_name'] = " "
@@ -102,7 +102,7 @@ class PrinterController < ApplicationController
         end
       end
 
-        filename = @jobname.downcase.gsub(/[^0-9a-z]/, "_") + ".csv"
+       
 
 
 
@@ -112,7 +112,7 @@ class PrinterController < ApplicationController
       # open or create the zip file
       Zip::ZipFile.open(bundle_filename, Zip::ZipFile::CREATE) {
           |zipfile|
-            zipfile.file.open(filename, "w") { |f| f.puts csv_string }
+            zipfile.file.open("merge.csv", "w") { |f| f.puts csv_string }
 
             for card in @cards do
               zipfile.add( "#{card.job_id}_file_1.pdf", "#{RAILS_ROOT}/public/cards/#{card.id}/#{card.job_id}_file_1.pdf")
