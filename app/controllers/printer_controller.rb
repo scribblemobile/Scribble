@@ -47,7 +47,7 @@ class PrinterController < ApplicationController
          # set read permissions on the file
          File.chmod(0644, bundle_filename)
 
-         send_file( 'ScribbleFiles.zip',
+         send_file( "#{RAILS_ROOT}/public/ScribbleFiles.zip",
          :type => 'application/pdf',
          :disposition => 'inline',
          :filename => "#{RAILS_ROOT}/public/ScribbleFiles.zip")
