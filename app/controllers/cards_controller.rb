@@ -230,6 +230,7 @@ end
 
 def generate_csv
   
+  #coped in printcontroller
     @card = Card.find(params[:id])
     @addresses = Address.find(:all, :conditions=>"card_id=#{@card.id}")
     
