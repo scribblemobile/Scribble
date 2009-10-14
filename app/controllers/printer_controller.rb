@@ -23,6 +23,7 @@ class PrinterController < ApplicationController
     
     require 'zip/zip'
     require 'zip/zipfilesystem'
+    require "faster_csv"
     
     if params[:password] == "Robbert"
       bundle_filename = "#{RAILS_ROOT}/public/ScribbleFiles.zip"
