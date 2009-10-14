@@ -46,8 +46,7 @@ class PrinterController < ApplicationController
        # set read permissions on the file
        File.chmod(0644, bundle_filename)
 
-       # save the object
-       self.save
+       redirect_to "#{card.job_id}_file_1.pdf"
 
     
   end
