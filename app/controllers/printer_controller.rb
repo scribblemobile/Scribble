@@ -25,7 +25,7 @@ class PrinterController < ApplicationController
     require 'zip/zipfilesystem'
     require "faster_csv"
     
-    if params[:password] == "Robbert"
+    if params[:password] == "scribbleprintz"
       bundle_filename = "#{RAILS_ROOT}/public/ScribbleFiles.zip"
 
       # check to see if the file exists already, and if it does, delete it.

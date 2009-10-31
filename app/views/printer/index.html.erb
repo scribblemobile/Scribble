@@ -33,7 +33,7 @@
 		</div>
 		
 
-		<div style="position:absolute; text-align:right; top:65px; width:700px"><a target="_blank" href="/generate_zip?password=Robbert">Generate ZIP</a></div>
+		<div style="position:absolute; text-align:right; top:65px; width:700px"><a target="_blank" href="/generate_zip?password=scribbleprintz">Generate ZIP</a></div>
 		
 		<div class="topBar2">
 			<div style="float:left">
@@ -41,7 +41,7 @@
 			</div>
 			
 			<div style="float:right">
-				<select autocomplete="false" onchange="window.location.href= '/printer?password=Robbert&shipped='+this.value">
+				<select autocomplete="false" onchange="window.location.href= '/printer?password=scribbleprintz&shipped='+this.value">
 					<option value="0"  >Not mailed</option>
 					<option value="1" <%if params[:shipped] == '1'%>selected<%end%>>Printed & Mailed</option>
 				</select>
