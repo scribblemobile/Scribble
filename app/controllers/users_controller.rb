@@ -55,17 +55,44 @@ class UsersController < ApplicationController
       
   end
   
-  def export_project_to_excel
-      e = Excel::Workbook
-      @users = User.find(:all)
-      @cards = Card.find(:all)
-      @addresses = Address.find(:all)
-      e.addWorksheetFromActiveRecord "Users", "users", @users
-      e.addWorksheetFromActiveRecord "Cards", "cards", @cards
-      e.addWorksheetFromActiveRecord "Addresses", "addresses", @addresses
-      headers['Content-Type'] = "application/vnd.ms-excel"
-      render_text(e.build)
+  def users_to_excel
+    @users = User.find(:all)
+
+                  respond_to do |format|
+                    
+                          format.xls { send_data @users.to_xls }
+                          format.csv { send_data @users.to_csv }
+                          
+                  end
+   
     end
+    
+    def cards_to_excel
+      @users = Card.find(:all)
+
+                    respond_to do |format|
+
+                            format.xls { send_data @users.to_xls }
+                            format.csv { send_data @users.to_csv }
+
+                    end
+
+      end
+      
+      def addresses_to_excel
+        @users = Address.find(:all)
+
+                      respond_to do |format|
+
+                              format.xls { send_data @users.to_xls }
+                              format.csv { send_data @users.to_csv }
+
+                      end
+
+        end
+    
+    
+    
   
   def index
     @users = User.find(:all, :order=>:created_at)
