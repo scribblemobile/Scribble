@@ -35,15 +35,8 @@ class PrinterController < ApplicationController
 
       @cards = Card.find(:all, :conditions=>"cards.printer_status = 0")
       
-      
-      
       #coped in printcontroller
       
-        
-
-       
-
-
         csv_string = FasterCSV.generate do |csv|
           csv << ["LINETYPE", "COUNT", "JOBID", "FIRSTNAME", "LASTNAME", "TITLE", "BUSINESS", "ADDRESS", "ADDRESS2", "CITY", "STATE", "ZIP", "COUNTRY", "DELIVERY POINT BARCODE", "SNGL PC", "CARRIER ROUTE", "WALK SEQUENCE", "CUSTOM1", "CUSTOM2", "CUSTOM3", "CUSTOM4", "CUSTOM5", "FILE_1", "FILE_2"]
 
@@ -101,20 +94,22 @@ class PrinterController < ApplicationController
       end
 
        
-
-
-
-
-
-
       # open or create the zip file
       Zip::ZipFile.open(bundle_filename, Zip::ZipFile::CREATE) {
           |zipfile|
             zipfile.file.open("merge.csv", "w") { |f| f.puts csv_string }
 
             for card in @cards do
-              zipfile.add( "#{card.job_id}_file_1.pdf", "#{RAILS_ROOT}/public/cards/#{card.id}/#{card.job_id}_file_1.pdf")
-              zipfile.add( "#{card.job_id}_file_2.pdf", "#{RAILS_ROOT}/public/cards/#{card.id}/#{card.job_id}_file_2.pdf")
+              
+                 front = "#{RAILS_ROOT}/public/cards/#{card.id}/#{card.job_id}_file_1.pdf"
+                  if File.file?(front)
+                     zipfile.add( "#{card.job_id}_file_1.pdf", front)
+                  end
+                  
+                  back = "#{RAILS_ROOT}/public/cards/#{card.id}/#{card.job_id}_file_2.pdf"
+                   if File.file?(back)
+                      zipfile.add( "#{card.job_id}_file_2.pdf", back)
+                   end
             end
          }
 
