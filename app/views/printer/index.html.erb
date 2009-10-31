@@ -14,7 +14,7 @@
 
 <body>
 	
-	<%if params[:password] != "Robbert"%>
+	<%if params[:password] != "scribbleprintz"%>
 
 	<div align="center" style="margin-top:75px">
 		<img src="/images/logo.png"><br>
@@ -27,6 +27,11 @@
 		<div style="position:absolute; top:5px ">
 			<img src="/images/logo.png" height="67" width="169">
 		</div>
+		
+		<div style="margin-top:5px; float:right">
+			<a href="/printer">Logout</a>
+		</div>
+		
 
 		<div style="position:absolute; text-align:right; top:65px; width:700px"><a target="_blank" href="/generate_zip?password=Robbert">Generate ZIP</a></div>
 		
@@ -79,7 +84,7 @@
 						</div>
 						</td>
 						<td class="memberTitleTD" style="text-align:left; background-color:#<%if even == 0%>E5E5E5<%else%>F0F0F0<%end%> ">
-							<%= relative_date(card.created_at) %>
+							<%= card.created_at.strftime('%m/%d/%y %I:%M%p') %>
 						</td>
 						<td class="memberTitleTD" style="text-align:left; ">
 							<% @addresses = Address.find(:all, :conditions=>"card_id = #{card.id}")%>

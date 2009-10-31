@@ -10,7 +10,7 @@ class PrinterController < ApplicationController
       noshipped = 1
     end
     
-    @cards = Card.paginate :page => params[:page], :conditions=>"cards.printer_status != #{noshipped}", :per_page => 25, :order => 'created_at ASC'
+    @cards = Card.paginate :page => params[:page], :conditions=>"cards.printer_status != #{noshipped}", :per_page => 25, :order => 'created_at DESC'
     
     
     # @cards = Card.find(:all, :conditions=>"cards.printer_status != 1", :order=>"created_at ASC")
@@ -70,9 +70,6 @@ class PrinterController < ApplicationController
             if record['country'].nil?
               record['country'] = " "
             end
-
-
-
 
             csv << ["100080",
                     "1",
