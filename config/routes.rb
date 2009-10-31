@@ -56,7 +56,7 @@ ActionController::Routing::Routes.draw do |map|
     map.csv 'csv', :controller => "cards", :action => "generate_csv"
     
     map.generate_zip 'generate_zip', :controller => "printer", :action => "generate_zip"
-    
+     map.export_project_to_excel 'export_project_to_excel', :controller => "users", :action => "export_project_to_excel"
   
     map.connect ':controller/:action/:id'
     map.connect ':controller/:action/:id.:format'

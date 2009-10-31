@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Mass TLC</title>
+	<title>Scribble Stats</title>
 	<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 	<script src="/javascripts/jquery-1.2.6.pack.js" type="text/javascript"></script>
 	<script src="/javascripts/iui.js" type="text/javascript"></script>
@@ -38,7 +38,7 @@
 
 	<div id="explore" title="Scribble Stats" class="panel" selected="true" >
 		
-	<%if params[:password] == "Robbert"%>
+	<%if params[:password] == "scribbleprintz"%>
 
 		<p><b><span style="font-size:24px; color:darkblue"><%=@totalusers%></span></b> users</p>
 
@@ -53,6 +53,8 @@
 		<p><b><span style="font-size:24px; color:darkblue">$<%=@revenue.rev%></span></b> total revenue</p>
 
 	<%end%>
+	
+	<div align="center"><a href="/export_project_to_excel" onclick="window.location.href='/export_project_to_excel'" target="_new">Export Database Dump to Excel</a></div>
 	
 	</div>
 
