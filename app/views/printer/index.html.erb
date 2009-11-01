@@ -88,7 +88,13 @@
 						</td>
 						<td class="memberTitleTD" style="text-align:left; ">
 							<% @addresses = Address.find(:all, :conditions=>"card_id = #{card.id}")%>
-							<%= @addresses.length%>
+							
+							<% if card.copy_me == TRUE%>
+								<% num = @addresses.length + 1%>
+								<%= num%>
+							<%else%>
+								<%= @addresses.length%>
+							<%end%>
 						</td>
 						<td class="memberTitleTD" style="text-align:left;">
 							<img style="padding:2px" src="/images/file.png"><a target="_blank" href="/cards/<%=card.id %>/<%=card.job_id%>_file_1.pdf">Front</a><br>
