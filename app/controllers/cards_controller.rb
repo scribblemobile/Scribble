@@ -266,10 +266,7 @@ def generate_csv
         if record['country'].nil?
           record['country'] = " "
         end
-        
-        
-        
-        
+
         csv << ["100080",
                 "1",
                 "#{@card.job_id}",
@@ -299,7 +296,6 @@ def generate_csv
       
       if @card.copy_me == TRUE
           
-
            csv << ["100080",
                     "1",
                     "#{@card.job_id}",
@@ -311,7 +307,7 @@ def generate_csv
                     @user.return_address2.upcase,
                     @user.return_city.upcase,
                     @user.return_state.upcase,
-                    @user.return_zip.upcase,
+                    @user.return_zip,
                     @user.return_country.upcase,
                     " ",
                     "SNGL PC",
