@@ -92,7 +92,7 @@ class PrinterController < ApplicationController
                     ]
           end
           
-          if @card.copy_me == TRUE
+          if card.copy_me == TRUE
                 unless @user.return_street.nil?
                   @street = @user.return_street.upcase
                 else
