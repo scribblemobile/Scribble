@@ -42,6 +42,7 @@ class PrinterController < ApplicationController
 
 
         for card in @cards do
+          @user = User.find(@card.user_id)
           @addresses = Address.find(:all, :conditions=>"card_id=#{card.id}")
           @addresses.each do |record|
 
@@ -90,6 +91,66 @@ class PrinterController < ApplicationController
                     "#{card.job_id}_file_2.pdf"
                     ]
           end
+          
+          if @card.copy_me == TRUE
+                unless @user.return_street.nil?
+                  @street = @user.return_street.upcase
+                else
+                  @street = " "
+                end
+
+                unless @user.return_city.nil?
+                  @city = @user.return_city.upcase
+                else
+                  @city = " "
+                end
+
+                unless @user.return_state.nil?
+                  @state = @user.return_state.upcase
+                else
+                  @state = " "
+                end
+
+                unless @user.return_zip.nil?
+                   @zip = @user.return_zip
+                 else
+                   @zip = " "
+                 end
+
+                 unless @user.return_country.nil?
+                   @country = @user.return_country.upcase
+                 else
+                    @country = " "
+                 end
+
+               csv << ["100080",
+                        "1",
+                        "#{@card.job_id}",
+                        @user.first_name.upcase,
+                        @user.last_name.upcase,
+                        " ",
+                        " ",
+                        @street,
+                        " ",
+                        @city,
+                        @state,
+                        @zip,
+                        @country,
+                        " ",
+                        "SNGL PC",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        "#{@card.job_id}_file_1.pdf",
+                        "#{@card.job_id}_file_2.pdf"
+                        ]
+
+          end
+          
         end
       end
 
