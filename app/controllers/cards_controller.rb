@@ -88,10 +88,10 @@ class CardsController < ApplicationController
         @card.lng = params[:lng]
       end
       unless params[:price_paid].nil?
-        @card.price_paid = params[:price_paid]
+        @card.price_paid = params[:price_paid].to_f
       end
       unless params[:receipt].nil?
-        @card.lng = params[:receipt]
+        @card.receipt = params[:receipt]
       end
       @card.save!
       @jobid = @card.id.to_i + 7000000
