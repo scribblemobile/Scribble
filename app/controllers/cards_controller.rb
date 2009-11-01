@@ -239,7 +239,7 @@ def generate_csv
   #coped in printcontroller
     @card = Card.find(params[:id])
     @addresses = Address.find(:all, :conditions=>"card_id=#{@card.id}")
-    
+    @user = User.find(@card.user_id)
     @jobname = "#{@card.job_id}_csv"
 
 
@@ -298,7 +298,7 @@ def generate_csv
       end
       
       if @card.copy_me == TRUE
-          @user = User.find(@card.user_id)
+          
 
            csv << ["100080",
                     "1",
