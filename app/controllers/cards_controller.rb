@@ -303,12 +303,32 @@ def generate_csv
                     @user.last_name.upcase,
                     " ",
                     " ",
-                    @user.return_address1.upcase,
-                    @user.return_address2.upcase,
-                    @user.return_city.upcase,
-                    @user.return_state.upcase,
-                    @user.return_zip,
-                    @user.return_country.upcase,
+                    unless @user.return_street.nil?
+                      @user.return_street.upcase,
+                    else
+                       " ",
+                    end
+                    " ",
+                    unless @user.return_city.nil?
+                      @user.return_city.upcase,
+                    else
+                       " ",
+                    end
+                    unless @user.return_state.nil?
+                      @user.return_state.upcase,
+                    else
+                       " ",
+                    end
+                    unless @user.return_zip.nil?
+                      @user.return_zip,
+                    else
+                       " ",
+                    end
+                    unless @user.return_country.nil?
+                      @user.return_country.upcase,
+                    else
+                       " ",
+                    end
                     " ",
                     "SNGL PC",
                     " ",
