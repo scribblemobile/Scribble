@@ -42,7 +42,7 @@ class PrinterController < ApplicationController
 
 
         for card in @cards do
-          @user = User.find(@card.user_id)
+          @user = User.find(card.user_id)
           @addresses = Address.find(:all, :conditions=>"card_id=#{card.id}")
           @addresses.each do |record|
 
