@@ -296,38 +296,41 @@ def generate_csv
                 "#{@card.job_id}_file_2.pdf"
                 ]
       end
+      
+      if @card.copy_me == TRUE
+          @user = User.find(@card.user_id)
+
+           csv << ["100080",
+                    "1",
+                    "#{@card.job_id}",
+                    @user.first_name.upcase,
+                    @user.last_name.upcase,
+                    " ",
+                    " ",
+                    @user.return_address1.upcase,
+                    @user.return_address2.upcase,
+                    @user.return_city.upcase,
+                    @user.return_state.upcase,
+                    @user.return_zip.upcase,
+                    @user.return_country.upcase,
+                    " ",
+                    "SNGL PC",
+                    " ",
+                    " ",
+                    " ",
+                    " ",
+                    " ",
+                    " ",
+                    " ",
+                    "#{@card.job_id}_file_1.pdf",
+                    "#{@card.job_id}_file_2.pdf"
+                    ]
+
+      end
+      
     end
     
-    if @card.copy_me == TRUE
-        @user = User.find(@card.user_id)
-        
-         csv << ["100080",
-                  "1",
-                  "#{@card.job_id}",
-                  @user.first_name.upcase,
-                  @user.last_name.upcase,
-                  " ",
-                  " ",
-                   @user.return_address1.upcase,
-                  @user.return_address2.upcase,
-                  @user.return_city.upcase,
-                  @user.return_state.upcase,
-                 @user.return_zip.upcase,
-                  @user.return_country.upcase,
-                  " ",
-                  "SNGL PC",
-                  " ",
-                  " ",
-                  " ",
-                  " ",
-                  " ",
-                  " ",
-                  " ",
-                  "#{@card.job_id}_file_1.pdf",
-                  "#{@card.job_id}_file_2.pdf"
-                  ]
-                  
-    end
+
 
     filename = @jobname.downcase.gsub(/[^0-9a-z]/, "_") + ".csv"
     send_data(csv_string,
