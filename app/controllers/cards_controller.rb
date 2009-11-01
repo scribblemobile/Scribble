@@ -295,6 +295,31 @@ def generate_csv
       end
       
       if @card.copy_me == TRUE
+            unless @user.return_street.nil?
+              @street = @user.return_street.upcase
+            else
+              @street = " "
+            end
+            unless @user.return_city.nil?
+              @city = @user.return_city.upcase
+            else
+              @city = " ",
+            end
+            unless @user.return_state.nil?
+              @state = @user.return_state.upcase
+            else
+              @state = " "
+            end
+            unless @user.return_zip.nil?
+               @zip = @user.return_zip
+             else
+               @zip = " "
+             end
+             unless @user.return_country.nil?
+               @country = @user.return_country.upcase
+             else
+                @country = " "
+             end
           
            csv << ["100080",
                     "1",
@@ -303,32 +328,12 @@ def generate_csv
                     @user.last_name.upcase,
                     " ",
                     " ",
-                    unless @user.return_street.nil?
-                      @user.return_street.upcase,
-                    else
-                       " ",
-                    end
+                    @street,
                     " ",
-                    unless @user.return_city.nil?
-                      @user.return_city.upcase,
-                    else
-                       " ",
-                    end
-                    unless @user.return_state.nil?
-                      @user.return_state.upcase,
-                    else
-                       " ",
-                    end
-                    unless @user.return_zip.nil?
-                      @user.return_zip,
-                    else
-                       " ",
-                    end
-                    unless @user.return_country.nil?
-                      @user.return_country.upcase,
-                    else
-                       " ",
-                    end
+                    @city,
+                    @state,
+                    @zip,
+                    @country,
                     " ",
                     "SNGL PC",
                     " ",
