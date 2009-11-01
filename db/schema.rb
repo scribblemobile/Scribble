@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091012175624) do
+ActiveRecord::Schema.define(:version => 20091101204350) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "card_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20091012175624) do
     t.text     "photo"
     t.integer  "printer_status", :default => 0
     t.integer  "job_id"
+    t.text     "receipt"
   end
 
   create_table "users", :force => true do |t|
