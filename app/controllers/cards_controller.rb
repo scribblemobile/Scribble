@@ -300,21 +300,25 @@ def generate_csv
             else
               @street = " "
             end
+            
             unless @user.return_city.nil?
               @city = @user.return_city.upcase
             else
-              @city = " ",
+              @city = " "
             end
+            
             unless @user.return_state.nil?
               @state = @user.return_state.upcase
             else
               @state = " "
             end
+            
             unless @user.return_zip.nil?
                @zip = @user.return_zip
              else
                @zip = " "
              end
+             
              unless @user.return_country.nil?
                @country = @user.return_country.upcase
              else
