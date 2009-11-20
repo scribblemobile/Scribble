@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
     
     map.generate_zip 'generate_zip', :controller => "printer", :action => "generate_zip"
     
-    map.check_code 'check_code.xml', :controller => "rewards", :action => "check_code"
+    map.check_code 'check_code.xml', :controller => "discounts", :action => "check_code"
     
      map.users_to_excel 'users_to_excel.xls', :controller => "users", :action => "users_to_excel"
      map.cards_to_excel 'cards_to_excel.xls', :controller => "users", :action => "cards_to_excel"
