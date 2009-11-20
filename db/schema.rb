@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091101204350) do
+ActiveRecord::Schema.define(:version => 20091120194820) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "card_id"
@@ -41,6 +41,20 @@ ActiveRecord::Schema.define(:version => 20091101204350) do
     t.integer  "printer_status", :default => 0
     t.integer  "job_id"
     t.text     "receipt"
+  end
+
+  create_table "discounts", :force => true do |t|
+    t.text     "code"
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "redemptions", :force => true do |t|
+    t.text     "code"
+    t.text     "device_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
