@@ -45,7 +45,7 @@ ActionController::Routing::Routes.draw do |map|
   
     map.resources :users
     map.resources :printer
-     map.resources :mailed
+    map.resources :mailed
   
     map.connect 'login', :controller => 'users', :action => 'login'
     map.connect 'logout', :controller => 'users', :action => 'logout'

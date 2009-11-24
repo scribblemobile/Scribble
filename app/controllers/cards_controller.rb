@@ -93,7 +93,16 @@ class CardsController < ApplicationController
       unless params[:receipt].nil?
         @card.receipt = params[:receipt]
       end
+ 
       @card.save!
+      
+      unless params[:discount_code].nil?
+         @redeem = Redemption.new
+         @redeem.code = params[:discount_code]
+         @redeem.device_id = params[:device_id]
+         @redeem.save!
+      end
+      
       @jobid = @card.id.to_i + 7000000
       @card.job_id = @jobid
       @card.printer_status = 0
