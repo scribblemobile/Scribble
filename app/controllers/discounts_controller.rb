@@ -1,8 +1,23 @@
 class DiscountsController < ApplicationController
+  
+  
   def index
+    
+     @codes = Discount.find(:all)
+    
+    if params[:discount]
+     @code = Discount.new(params[:discount])
+     @code.code = @code.code.upcase
+     @code.save
+     flash[:notice] = "Code Added"
+      redirect_to '/discounts?password=scribbleprintz'
+   end
   end
 
   def create
+    
+   
+   
   end
   
   

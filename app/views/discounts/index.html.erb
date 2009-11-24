@@ -1,2 +1,24 @@
-<h1>Discounts#index</h1>
-<p>Find me in app/views/discounts/index.html.erb</p>
+
+
+<% if params[:password] == "scribbleprintz"%>
+
+
+<form action="/discounts?password=scribbleprintz" method="post">
+	Code: <%= text_field_tag "discount[code]", "", :style=>"width:100px", :autocomplete=>"off"%> 
+	Name: <%= text_field_tag "discount[name]", "", :style=>"width:100px", :autocomplete=>"off"%>
+	<%= submit_tag "Add Code"%>
+</form>
+
+<% if flash[:notice]%>
+	<p style="color:red; font-weight:bold">Code Added</p>
+
+<%end%>
+
+
+<b>Active Discount Codes</b><br>
+<%for code in @codes%>
+	<%=code.code%> - <%=code.name%><br>
+<%end%>
+
+
+<%end%>
