@@ -59,14 +59,13 @@ ActionController::Routing::Routes.draw do |map|
     
     map.check_code 'check_code.xml', :controller => "discounts", :action => "check_code"
     
-     map.users_to_excel 'users_to_excel.xls', :controller => "users", :action => "users_to_excel"
-     map.cards_to_excel 'cards_to_excel.xls', :controller => "users", :action => "cards_to_excel"
-     map.addresses_to_excel 'addresses_to_excel.xls', :controller => "users", :action => "addresses_to_excel"
+    map.users_to_excel 'users_to_excel.xls', :controller => "users", :action => "users_to_excel"
+    map.cards_to_excel 'cards_to_excel.xls', :controller => "users", :action => "cards_to_excel"
+    map.addresses_to_excel 'addresses_to_excel.xls', :controller => "users", :action => "addresses_to_excel"
   
     map.connect ':controller/:action/:id'
     map.connect ':controller/:action/:id.:format'
   
-  
-  
+    map.root :controller => 'splash', :action=> 'index'
   
 end
